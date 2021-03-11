@@ -10,6 +10,10 @@ Features:
 - Second output with inverted signal
 - Initial output messages (optional)
 
+Modifications to the original:
+- Preserve the inbound message by appending the clock information to msg.clock.
+- Allow the control of the clock generator with incoming msg properties: msg.reset: resets the clock to it's initial state if its value is true.
+
 ## Installation
 
 Open Node-RED and select `Manage palette` from the menu to open the Palette Manager. Go to the `Install` tab, search for `node-red-contrib-clock-generator` and click `install`.
