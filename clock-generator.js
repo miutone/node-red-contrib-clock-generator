@@ -35,15 +35,15 @@ module.exports = RED => {
 		};
 
 		const update = value => {
-			msg.clock = getPayload( value );
-			msg.timestamp = new Date().getTime();		
+			node.msg.clock = getPayload( value );
+			node.msg.timestamp = new Date().getTime();		
 
 			setStatus( value, true );
-			this.send( [ msg, { ...msg, clock: getPayload( !value ) } ] );
+			this.send( [ node.msg, { ...node.msg, clock: getPayload( !value ) } ] );
 
 			if( timestamp !== 0 ) {
-				while( timestamp <= msg.timestamp ) timestamp += config.period * 500;
-				timeout = setTimeout( update, timestamp - msg.timestamp, !value );
+				while( timestamp <= node.msg.timestamp ) timestamp += config.period * 500;
+				timeout = setTimeout( update, timestamp - node.msg.timestamp, !value );
 			} else {
 				clearTimeout( timeout );
 			}
