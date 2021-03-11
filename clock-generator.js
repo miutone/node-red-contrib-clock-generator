@@ -2,6 +2,8 @@ module.exports = RED => {
 	RED.nodes.registerType( 'clock-generator', function( config ) {
 		RED.nodes.createNode( this, config );
 
+		var node = this;
+		let msg;
 		let timeout;
 		let timestamp;
 
@@ -50,7 +52,11 @@ module.exports = RED => {
 		timestamp = !config.init ? 0 : 1;
 		!config.init ? setStatus() : this.emit( 'input', { payload: false } );
 
-		this.on( 'input', msg => ( msg.hasOwnProperty("reset") && msg.reset ) ? stop() : start() );
+		this.on( 'input', msg => {
+			node.msg = msg;
+			( msg.hasOwnProperty("reset") && msg.reset ) ? stop() : start() 
+		)};
+			
 		this.on( 'close', stop );
 	} );
 };
