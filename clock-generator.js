@@ -50,7 +50,7 @@ module.exports = RED => {
 		timestamp = !config.init ? 0 : 1;
 		!config.init ? setStatus() : this.emit( 'input', { payload: false } );
 
-		this.on( 'input', msg => msg.reset ? stop() : start() );
+		this.on( 'input', msg => ( msg.hasOwnProperty("reset") && msg.reset ) ? stop() : start() );
 		this.on( 'close', stop );
 	} );
 };
