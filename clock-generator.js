@@ -33,15 +33,11 @@ module.exports = RED => {
 		};
 
 		const update = value => {
-			msg = {
-				name: config.name,
-				topic: config.topic,
-				payload: getPayload( value ),
-				timestamp: new Date().getTime()
-			};
+			msg.clock = getPayload( value );
+			msg.timestamp = new Date().getTime();		
 
 			setStatus( value, true );
-			this.send( [ msg, { ...msg, payload: getPayload( !value ) } ] );
+			this.send( [ msg, { ...msg, clock: getPayload( !value ) } ] );
 
 			if( timestamp !== 0 ) {
 				while( timestamp <= msg.timestamp ) timestamp += config.period * 500;
@@ -54,7 +50,7 @@ module.exports = RED => {
 		timestamp = !config.init ? 0 : 1;
 		!config.init ? setStatus() : this.emit( 'input', { payload: false } );
 
-		this.on( 'input', msg => msg.payload ? start() : stop() );
+		this.on( 'input', msg => msg.reset ? stop() : start() );
 		this.on( 'close', stop );
 	} );
 };
