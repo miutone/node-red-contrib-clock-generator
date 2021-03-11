@@ -4,7 +4,7 @@
 	"description": "A clock generator for Node-RED",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/patrickknabe/node-red-contrib-clock-generator.git"
+		"url": "git+https://github.com/miutone/node-red-contrib-clock-next.git"
 	},
 	"keywords": [
 		"clock",
@@ -16,12 +16,12 @@
 	"author": "Patrick Knabe",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/patrickknabe/node-red-contrib-clock-generator/issues"
+		"url": "https://github.com/miutone/node-red-contrib-clock-next/issues"
 	},
-	"homepage": "https://github.com/patrickknabe/node-red-contrib-clock-generator#readme",
+	"homepage": "https://github.com/miutone/node-red-contrib-clock-next#readme",
 	"node-red": {
 		"nodes": {
-			"clock-generator": "clock-generator.js"
+			"clock-next": "clock-generator.js"
 		}
 	}
 }
